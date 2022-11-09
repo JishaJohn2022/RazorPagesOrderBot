@@ -6,7 +6,7 @@ namespace OrderBot
     {
         private enum State
         {
-            WELCOMING, SIZE, PROTEIN
+            WELCOMING, NAME, DETAIL
         }
 
         private State nCur = State.WELCOMING;
@@ -25,20 +25,21 @@ namespace OrderBot
             {
                 case State.WELCOMING:
                     aMessages.Add("Welcome to Tiny Tots Child Care!");
-                    aMessages.Add("How can I help you today?");
-                    this.nCur = State.SIZE;
+                     aMessages.Add("Please enter your child name, if the kid is a student here");
+                    
+                    
+                    this.nCur = State.NAME;
                     break;
-                case State.SIZE:
-                    this.oOrder.Size = sInMessage;
+                    case State.NAME:
+                    this.oOrder.Name = sInMessage;
                     this.oOrder.Save();
-                    aMessages.Add("What protein would you like on this  " + this.oOrder.Size + " Shawarama?");
-                    this.nCur = State.PROTEIN;
+                    aMessages.Add("What detail would you like to know about   " + this.oOrder.Name );
+                    this.nCur = State.DETAIL;
                     break;
-                case State.PROTEIN:
-                    string sProtein = sInMessage;
-                    aMessages.Add("What toppings would you like on this  " + this.oOrder.Size + " " + sProtein + " Shawarama?");
+                case State.DETAIL:
+                    string sDetail = sInMessage;
+                    aMessages.Add("Please input the student id of " + this.oOrder.Name+ " to know the" + sDetail);
                     break;
-
 
             }
             aMessages.ForEach(delegate (String sMessage)

@@ -4,7 +4,7 @@ namespace OrderBot
 {
     public class Order : ISQLModel
     {
-        private string _size = String.Empty;
+        private string _name = String.Empty;
         private string _phone = String.Empty;
 
         public string Phone{
@@ -12,9 +12,9 @@ namespace OrderBot
             set => _phone = value;
         }
 
-        public string Size{
-            get => _size;
-            set => _size = value;
+        public string Name{
+            get => _name;
+            set => _name = value;
         }
 
         public void Save(){
@@ -26,10 +26,10 @@ namespace OrderBot
                 commandUpdate.CommandText =
                 @"
         UPDATE orders
-        SET size = $size
+        SET size = $name
         WHERE phone = $phone
     ";
-                commandUpdate.Parameters.AddWithValue("$size", Size);
+                commandUpdate.Parameters.AddWithValue("$name", Name);
                 commandUpdate.Parameters.AddWithValue("$phone", Phone);
                 int nRows = commandUpdate.ExecuteNonQuery();
                 if(nRows == 0){
@@ -37,9 +37,9 @@ namespace OrderBot
                     commandInsert.CommandText =
                     @"
             INSERT INTO orders(size, phone)
-            VALUES($size, $phone)
+            VALUES($name, $phone)
         ";
-                    commandInsert.Parameters.AddWithValue("$size", Size);
+                    commandInsert.Parameters.AddWithValue("$name", Name);
                     commandInsert.Parameters.AddWithValue("$phone", Phone);
                     int nRowsInserted = commandInsert.ExecuteNonQuery();
 
