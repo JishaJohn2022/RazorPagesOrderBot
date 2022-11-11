@@ -6,7 +6,7 @@ namespace OrderBot
     {
         private enum State
         {
-            WELCOMING, NAME, DETAIL
+            WELCOMING, NAME, DETAIL, STUDENTID
         }
 
         private State nCur = State.WELCOMING;
@@ -40,6 +40,12 @@ namespace OrderBot
                     string sDetail = this.oOrder.Detail= sInMessage;
                     this.oOrder.Save();
                     aMessages.Add("Please input the student id of " + this.oOrder.Name+ " to know the" + sDetail);
+                    this.nCur = State.STUDENTID;
+                    break;
+                case State.STUDENTID:
+                    string sStudentid =sInMessage;
+                    this.oOrder.Save();
+                  // aMessages.Add("Please enter " + this.oOrder.Name+ " to know the" + sStudentid);
                     break;
 
             }

@@ -7,6 +7,7 @@ namespace OrderBot
         private string _name = String.Empty;
         private string _phone = String.Empty;
         private string _detail= String.Empty;   
+        private string _studentid= String.Empty; 
         public string Phone{
             get => _phone;
             set => _phone = value;
@@ -20,6 +21,7 @@ namespace OrderBot
             get => _detail;
             set => _detail = value;
         }
+                
         public void Save(){
            using (var connection = new SqliteConnection(DB.GetConnectionString()))
             {
@@ -35,6 +37,7 @@ namespace OrderBot
                 commandUpdate.Parameters.AddWithValue("$name", Name);
                 commandUpdate.Parameters.AddWithValue("$phone", Phone);
                 commandUpdate.Parameters.AddWithValue("$detail", Detail);
+            
                 int nRows = commandUpdate.ExecuteNonQuery();
                 if(nRows == 0){
                     var commandInsert = connection.CreateCommand();
