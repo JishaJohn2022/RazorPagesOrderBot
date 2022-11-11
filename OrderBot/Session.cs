@@ -30,14 +30,15 @@ namespace OrderBot
                     
                     this.nCur = State.NAME;
                     break;
-                    case State.NAME:
+                case State.NAME:
                     this.oOrder.Name = sInMessage;
                     this.oOrder.Save();
                     aMessages.Add("What detail would you like to know about   " + this.oOrder.Name );
                     this.nCur = State.DETAIL;
                     break;
                 case State.DETAIL:
-                    string sDetail = sInMessage;
+                    string sDetail = this.oOrder.Detail= sInMessage;
+                    this.oOrder.Save();
                     aMessages.Add("Please input the student id of " + this.oOrder.Name+ " to know the" + sDetail);
                     break;
 
