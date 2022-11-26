@@ -2,11 +2,26 @@ using System;
 using System.IO;
 using Xunit;
 using OrderBot;
-
+using Microsoft.Data.Sqlite;
 namespace OrderBot.tests
 {
     public class OrderBotTest
     {
+        public OrderBotTest()
+        {
+            using (var connection = new SqliteConnection(DB.GetConnectionString()))
+            {
+                connection.Open();
+
+                var commandUpdate = connection.CreateCommand();
+                commandUpdate.CommandText =
+                @"
+        DELETE FROM orders
+    ";
+                commandUpdate.ExecuteNonQuery();
+
+            }
+        }
         [Fact]
         public void Test1()
         {
@@ -51,8 +66,10 @@ namespace OrderBot.tests
             oSession.OnMessage("john");
             String sInput = oSession.OnMessage("fee")[0];
             Assert.True(sInput.ToLower().Contains("input"));
+            Assert.True(sInput.ToLower().Contains("fee"));
             Assert.True(sInput.ToLower().Contains("student id"));
-         
+
+
         }
     }
 }

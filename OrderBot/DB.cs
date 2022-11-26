@@ -8,6 +8,7 @@ namespace OrderBot
         public static string GetConnectionString(){
             string sFName = "/Orders.db";
             string sPrefix = "Data Source=";
+            string sReturn = sPrefix + Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + sFName;
             string sPath = Directory.GetCurrentDirectory();
             string[] subs = sPath.Split(Path.DirectorySeparatorChar);
             for(int n = subs.Length - 1; n > 1; n-- ){
@@ -18,10 +19,11 @@ namespace OrderBot
                 }
                 string[] aFiles = Directory.GetFiles(sResult, "README.md", System.IO.SearchOption.TopDirectoryOnly);
                 if(aFiles.Length > 0){
-                    return sPrefix + sResult + sFName;
+                    sReturn =  sPrefix + sResult + sFName;
+                    break;
                 }
             }
-            return sPrefix + Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + sFName;
+            return sReturn;
         }
     }
 }
