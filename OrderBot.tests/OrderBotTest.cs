@@ -55,7 +55,7 @@ namespace OrderBot.tests
             oSession.OnMessage("hello");
             String sInput = oSession.OnMessage("john")[0];
             Assert.True(sInput.ToLower().Contains("detail"));
-            //Assert.True(sInput.ToLower().Contains("large"));
+           
         }
         [Fact]
         public void Teststudent()
@@ -64,10 +64,40 @@ namespace OrderBot.tests
             Session oSession = new Session("12345");
             oSession.OnMessage("hello");
             oSession.OnMessage("john");
-            String sInput = oSession.OnMessage("fee")[0];
+            String sInput = oSession.OnMessage("Progress")[0];
             Assert.True(sInput.ToLower().Contains("input"));
-            Assert.True(sInput.ToLower().Contains("fee"));
+            Assert.True(sInput.ToLower().Contains("progress"));
             Assert.True(sInput.ToLower().Contains("student id"));
+
+
+        }
+        [Fact]
+         public void Testmail()
+        {
+            string sPath = DB.GetConnectionString();
+            Session oSession = new Session("12345");
+            oSession.OnMessage("hello");
+            oSession.OnMessage("john");
+             oSession.OnMessage("Progress");
+            String sInput = oSession.OnMessage("3456")[0];
+            Assert.True(sInput.ToLower().Contains("email"));
+            Assert.True(sInput.ToLower().Contains("registered"));
+            
+
+
+        }
+        [Fact]
+        public void Testend()
+        {
+            string sPath = DB.GetConnectionString();
+            Session oSession = new Session("12345");
+            oSession.OnMessage("hello");
+            oSession.OnMessage("john");
+             oSession.OnMessage("Progress");
+            String sInput = oSession.OnMessage("3456")[1];
+            Assert.True(sInput.ToLower().Contains("thank you"));
+            Assert.True(sInput.ToLower().Contains("tiny tots"));
+            
 
 
         }

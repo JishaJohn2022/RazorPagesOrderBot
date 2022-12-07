@@ -8,7 +8,7 @@ namespace OrderBot
         private string _phone = String.Empty;
         private string _detail= String.Empty;   
         private string _studentid= String.Empty; 
-        public string Phone{
+         public string Phone{
             get => _phone;
             set => _phone = value;
         }
@@ -21,6 +21,10 @@ namespace OrderBot
             get => _detail;
             set => _detail = value;
         }
+        public string Studentid{
+            get => _studentid;
+            set => _studentid = value;
+        }
                 
         public void Save(){
            using (var connection = new SqliteConnection(DB.GetConnectionString()))
@@ -31,24 +35,25 @@ namespace OrderBot
                 commandUpdate.CommandText =
                 @"
         UPDATE orders
-        SET name = $name,detail= $detail
+        SET name = $name,detail= $detail,studentid= $studentid
         WHERE phone = $phone
     ";
                 commandUpdate.Parameters.AddWithValue("$name", Name);
                 commandUpdate.Parameters.AddWithValue("$phone", Phone);
                 commandUpdate.Parameters.AddWithValue("$detail", Detail);
-            
+                commandUpdate.Parameters.AddWithValue("$studentid", Studentid);
                 int nRows = commandUpdate.ExecuteNonQuery();
                 if(nRows == 0){
                     var commandInsert = connection.CreateCommand();
                     commandInsert.CommandText =
                     @"
-            INSERT INTO orders(name, phone,detail)
-            VALUES($name, $phone,$detail)
+            INSERT INTO orders(name, phone,detail,studentid)
+            VALUES($name, $phone,$detail,$studentid)
         ";
                     commandInsert.Parameters.AddWithValue("$name", Name);
                     commandInsert.Parameters.AddWithValue("$phone", Phone);
                     commandInsert.Parameters.AddWithValue("$detail", Detail);
+                     commandInsert.Parameters.AddWithValue("$studentid", Studentid);
                     int nRowsInserted = commandInsert.ExecuteNonQuery();
 
                 }

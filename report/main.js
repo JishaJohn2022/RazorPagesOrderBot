@@ -225,8 +225,8 @@ var assemblies = [
     "name": "OrderBot",
     "classes": [
       { "name": "OrderBot.DB", "rp": "OrderBot_DB.html", "cl": 18, "ucl": 0, "cal": 18, "tl": 29, "ct": "LineCoverage", "mc": "-", "cb": 6, "tb": 6, "lch": [], "bch": [], "hc": [] },
-      { "name": "OrderBot.Order", "rp": "OrderBot_Order.html", "cl": 39, "ucl": 0, "cal": 39, "tl": 59, "ct": "LineCoverage", "mc": "-", "cb": 2, "tb": 2, "lch": [], "bch": [], "hc": [] },
-      { "name": "OrderBot.Session", "rp": "OrderBot_Session.html", "cl": 29, "ucl": 3, "cal": 32, "tl": 60, "ct": "LineCoverage", "mc": "-", "cb": 4, "tb": 5, "lch": [], "bch": [], "hc": [] },
+      { "name": "OrderBot.Order", "rp": "OrderBot_Order.html", "cl": 43, "ucl": 0, "cal": 43, "tl": 64, "ct": "LineCoverage", "mc": "-", "cb": 2, "tb": 2, "lch": [], "bch": [], "hc": [] },
+      { "name": "OrderBot.Session", "rp": "OrderBot_Session.html", "cl": 35, "ucl": 0, "cal": 35, "tl": 60, "ct": "LineCoverage", "mc": "-", "cb": 5, "tb": 5, "lch": [], "bch": [], "hc": [] },
     ]},
 ];
 

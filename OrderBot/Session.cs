@@ -26,8 +26,6 @@ namespace OrderBot
                 case State.WELCOMING:
                     aMessages.Add("Welcome to Tiny Tots Child Care!");
                      aMessages.Add("Please enter your child name, if the kid is a student here");
-                    
-                    
                     this.nCur = State.NAME;
                     break;
                 case State.NAME:
@@ -39,13 +37,15 @@ namespace OrderBot
                 case State.DETAIL:
                     string sDetail = this.oOrder.Detail= sInMessage;
                     this.oOrder.Save();
-                    aMessages.Add("Please input the student id of " + this.oOrder.Name+ " to know the" + sDetail);
+                    aMessages.Add("Please input the student id of " + this.oOrder.Name+ " to know the " + sDetail);
                     this.nCur = State.STUDENTID;
                     break;
                 case State.STUDENTID:
-                    string sStudentid =sInMessage;
+                    string sStudentid =this.oOrder.Studentid=sInMessage;
                     this.oOrder.Save();
-                  // aMessages.Add("Please enter " + this.oOrder.Name+ " to know the" + sStudentid);
+                  aMessages.Add(" An email is send to the registered email address with " + this.oOrder.Detail+ " details of " + this.oOrder.Name);
+                  aMessages.Add("Thank you for reaching out to Tiny Tots!");
+                  this.nCur = State.WELCOMING;
                     break;
 
             }
