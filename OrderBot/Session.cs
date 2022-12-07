@@ -44,7 +44,7 @@ namespace OrderBot
                     string sStudentid =this.oOrder.Studentid=sInMessage;
                     this.oOrder.Save();
                   aMessages.Add(" An email is send to the registered email address with " + this.oOrder.Detail+ " details of " + this.oOrder.Name);
-                  aMessages.Add("Thank you for reaching out to Tiny Tots!");
+                  aMessages.Add("Thank you for reaching out to Tiny Tots !");
                   this.nCur = State.WELCOMING;
                     break;
 
